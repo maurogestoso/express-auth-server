@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
