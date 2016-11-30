@@ -1,4 +1,5 @@
 const express = require('express');
+const Authentication = require('./controllers/authentication');
 
 const apiRouter = express.Router();
 
@@ -10,5 +11,7 @@ apiRouter.get('/', function (req, res, next) {
     'bike helmet'
   ]);
 });
+
+apiRouter.post('/signup', Authentication.signup);
 
 module.exports = apiRouter;

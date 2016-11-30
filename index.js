@@ -15,20 +15,6 @@ mongoose.connect(DB_URI, function (err) {
   else console.log(`Connected to DB: ${DB_URI}`);
 });
 
-// ************************* TEST CONNECTION WITH MONGODB SERVER *********************************
-// you should have the mongodb server running in your terminal using the command `mongod`
-// If everything is working correctly you should see 'Can you dig it?' logged in the terminal
-
-var User = mongoose.model('User', { name: String });
-
-var user = new User({ name: 'Art' });
-user.save(function (err) {
-  if (err) console.log(err);
-  else console.log('Can you dig it?');
-});
-
-// ************************* DELETE AFTER SUCCESSFUL TEST *********************************
-
 // App middleware setup
 app.use(morgan('dev'));
 app.use(cors());
