@@ -36,3 +36,12 @@ exports.signup = function (req, res, next) {
     });
   });
 };
+
+exports.signin = function (req, res, next) {
+  // User has already been authenticated
+  // Passport puts the user under the request object. NICE!
+  // Send JWT
+  res.send({
+    token: tokenForUser(req.user)
+  });
+}
