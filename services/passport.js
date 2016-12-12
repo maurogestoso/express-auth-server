@@ -41,13 +41,13 @@ const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
 // //////////// LOCAL STRATEGY //////////////////////////////////////////////////////
 // //////////////////////////////////////////////////////////////////////////////////
 
-const localOptions = {
-  usernameField: 'email'
-};
+// const localOptions = {
+//   usernameField: 'email'
+// };
 
-const localLogin = new LocalStrategy(localOptions, function (email, password, done) {
+const localLogin = new LocalStrategy(function (username, password, done) {
   // verify username and password
-  User.findOne({email}, function (err, user) {
+  User.findOne({username}, function (err, user) {
     if (err) return done(err, false);
     
     if (!user) return done(null, false);
@@ -55,14 +55,12 @@ const localLogin = new LocalStrategy(localOptions, function (email, password, do
     // compare passwords
     user.comparePassword(password, function (err, isMatch) {
       if (err) return done(err);
+      // if they don't, call done with false
       if(!isMatch) return done(null, false);
+      // if they match, call done with user
       return done(null, user);
     });
-  })
-  // if they match, call done with user
-
-  // if they don't, call done with false
-
+  });
 });
 
 // Tell passport to use this Strategy

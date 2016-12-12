@@ -2,10 +2,18 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new mongoose.Schema({
-  email: {
+  username: {
     type: String,
     unique: true,
     lowercase: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  avatar_url: {
+    type: String,
+    default: 'https://avatar3.githubusercontent.com/u/6791502?v=3&s=200'
   },
   password: String
 });
